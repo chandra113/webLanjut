@@ -1,71 +1,38 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    <title>Login Page</title>
 
-    <style>
-        html, body{
-            height: 100%
-        }
-    </style>
-  </head>
 
-  <body>
-    <div class="container h-100">
-        <div class="row align-items-center h-100 align-middle">
-            <div class="col-6 mx-auto">
-                <div class="jumbotron">
-                    <center><h3>LOGIN FORM</h3></center><br />
-                    
-                    <?php if(session()->has('error')): ?>
-                        <p class="text-danger text-center"><?= session()->getFlashdata('error') ?></p>
-                    <?php endif; ?>
-                    
-                    <?php $validation = session()->getFlashdata('validation'); ?>
+    <div id="login">
 
-                    <form action="<?= current_url() ?>" method="POST">
-                        <?= csrf_field() ?>
-                        <div class="form-group">
-                            <label for="">Username / Email</label>
-                            <input autocomplete="off" autofocus="on" type="text" name="username" id="username" value="<?= old('username') ?>" class="form-control <?= $validation && $validation->hasError('username') ? 'is-invalid' : '' ?>">
-                            <?php if($validation && $validation->hasError('username')): ?>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('username')?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="<?= current_url(); ?>" method="POST">
+                            <h3 class="text-center text-info">Login</h3>
+                            <div class="form-group">
+                                <label for="username" class="text-info">Username</label><br>
+                                <input type="text" name="username" id="username" value="<?= old('username') ?>" required="" placeholder="Masukkan Username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-info">Password</label><br>
+                                <input type="password" name="password" id="password" value="<?= old('password') ?>" required="" placeholder="Masukkan Password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <br>
 
-                        <div class="form-group">
-                            <label for="">Password</label>
-                            <input type="password" name="password" id="password" value="<?= old('password') ?>" class="form-control <?= $validation && $validation->hasError('password') ? 'is-invalid' : '' ?>">
-                            <?php if($validation && $validation->hasError('password')): ?>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('password')?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-
-                        <a href="<?= site_url('auth/register') ?>">Belum punya akun? daftar sekarang</a><br /><br />
-
-                        <button class="btn btn-success btn-block">SIGN IN</button>
-                    </form>
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Sign In">
+                            </div>
+                            <div id="register-link" class="text-right">
+                                <a href="<?= base_url('/auth/registration'); ?> " class="text-info">Register here</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
 
-</html>
+    
+    

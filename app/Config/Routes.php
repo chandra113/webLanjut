@@ -16,8 +16,8 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
-$routes->setDefaultMethod('index');
+$routes->setDefaultController('Auth');
+$routes->setDefaultMethod('login');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(false);
@@ -30,8 +30,14 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->match(['get','post'], '/auth/login', 'Auth::login');
+$routes->match(['get','post'], '/auth/login','Auth::login');
+$routes->match(['get','post'], '/auth/registration','Auth::register');
 $routes->get('/', 'Home::index');
+$routes->get('/home/about', 'Home::about');
+$routes->get('/home/admin', 'Home::admin');
+$routes->get('/auth/logout', 'Auth::logout');
+$routes->get('/auth/regist', 'Auth::regist');
+
 
 /**
  * --------------------------------------------------------------------
